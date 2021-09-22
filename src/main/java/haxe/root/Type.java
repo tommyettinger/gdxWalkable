@@ -3,7 +3,7 @@ package haxe.root;
 
 import haxe.root.*;
 
-@SuppressWarnings(value={"rawtypes", "unchecked"})
+@SuppressWarnings(value={"rawtypes"})
 public class Type extends haxe.lang.HxObject
 {
 	public Type(haxe.lang.EmptyObject empty)
@@ -13,7 +13,6 @@ public class Type extends haxe.lang.HxObject
 	
 	public Type()
 	{
-		//line 39 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/_std/Type.hx"
 		haxe.root.Type.__hx_ctor__Type(this);
 	}
 	
@@ -25,14 +24,11 @@ public class Type extends haxe.lang.HxObject
 	
 	public static java.lang.Class getEnum(java.lang.Object o)
 	{
-		//line 51 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/_std/Type.hx"
 		if (( ( o instanceof java.lang.Enum ) || ( o instanceof haxe.lang.Enum ) )) 
 		{
-			//line 52 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/_std/Type.hx"
 			return o.getClass();
 		}
 		
-		//line 54 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/_std/Type.hx"
 		return null;
 	}
 	

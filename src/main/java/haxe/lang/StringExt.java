@@ -3,7 +3,6 @@ package haxe.lang;
 
 import haxe.root.*;
 
-@SuppressWarnings(value={"rawtypes", "unchecked"})
 public class StringExt
 {
 	public StringExt()
@@ -155,7 +154,6 @@ public class StringExt
 	
 	public static java.lang.String toString(java.lang.String me)
 	{
-		//line 174 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/StringExt.hx"
 		return me;
 	}
 	
@@ -178,7 +176,6 @@ public class StringExt
 	
 	public static java.lang.String toNativeString(java.lang.String me)
 	{
-		//line 195 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/StringExt.hx"
 		return me;
 	}
 	

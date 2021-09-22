@@ -35,8 +35,7 @@ public class Runtime
 	}
 	static
 	{
-		//line 61 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
-		haxe.lang.Runtime.undefined = ((java.lang.Object) (new haxe.lang.DynamicObject(new java.lang.String[]{}, new java.lang.Object[]{}, new java.lang.String[]{}, new double[]{})) );
+		haxe.lang.Runtime.undefined = new DynamicObject(new String[]{}, new Object[]{}, new String[]{}, new double[]{});
 	}
 	
 	public Runtime()
@@ -116,7 +115,7 @@ public class Runtime
 	public static boolean toBool(java.lang.Object obj)
 	{
 		
-		return (obj == null) ? false : ((java.lang.Boolean) obj).booleanValue();
+		return (obj == null) ? false : (Boolean) obj;
 	
 	}
 	
@@ -131,15 +130,12 @@ public class Runtime
 	
 	public static long toLong(java.lang.Object obj)
 	{
-		//line 148 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
 		if (( obj == null )) 
 		{
-			//line 148 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
-			return ((long) (0) );
+			return 0;
 		}
 		else
 		{
-			//line 148 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
 			return ((java.lang.Number) (obj) ).longValue();
 		}
 		
@@ -161,24 +157,19 @@ public class Runtime
 	
 	public static boolean isInt(java.lang.Number num)
 	{
-		//line 175 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
 		return ( ( num != null ) && ( num.doubleValue() == num.intValue() ) );
 	}
 	
 	
 	public static boolean isInt(java.lang.Object obj)
 	{
-		//line 166 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
 		if (( obj instanceof java.lang.Number )) 
 		{
-			//line 167 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
 			java.lang.Number n = ((java.lang.Number) (obj) );
-			//line 168 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
 			return ( n.doubleValue() == n.intValue() );
 		}
 		else
 		{
-			//line 170 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
 			return false;
 		}
 		
@@ -188,7 +179,7 @@ public class Runtime
 	public static boolean slowHasField(java.lang.Object o, java.lang.String field)
 	{
 		
-		java.lang.Class cl = null;
+		java.lang.Class cl;
 		if (o instanceof java.lang.Class)
 		{
 			if (o == java.lang.String.class)
@@ -317,7 +308,7 @@ public class Runtime
 					return new haxe.lang.Closure(obj != null ? obj : cl, field);
 				}
 			}
-		} catch (Throwable t2)
+		} catch (Throwable ignored)
 		{
 
 		}
@@ -335,7 +326,7 @@ public class Runtime
 	public static java.lang.Object slowSetField(java.lang.Object obj, java.lang.String field, java.lang.Object value)
 	{
 		
-		java.lang.Class cl = null;
+		java.lang.Class cl;
 		if (obj instanceof java.lang.Class)
 		{
 			cl = (java.lang.Class) obj;
@@ -370,7 +361,7 @@ public class Runtime
 	public static java.lang.Object slowCallField(java.lang.Object obj, java.lang.String field, haxe.root.Array args)
 	{
 		
-		java.lang.Class cl = null;
+		java.lang.Class cl;
 		if (obj instanceof java.lang.Class)
 		{
 			if (obj == java.lang.String.class && field.equals("fromCharCode"))
@@ -463,7 +454,7 @@ public class Runtime
 				java.lang.Object o = objs[i];
 				if (o instanceof java.lang.Number)
 				{
-					java.lang.Class curCls = null;
+					java.lang.Class curCls;
 					if (i < allcls.length)
 					{
 						curCls = allcls[i];
@@ -580,36 +571,28 @@ public class Runtime
 	
 	public static java.lang.String toString(java.lang.Object obj)
 	{
-		//line 573 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
 		if (( obj == null )) 
 		{
-			//line 574 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
 			return null;
 		}
 		
-		//line 576 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
 		if (( ( ( obj instanceof java.lang.Number ) &&  ! (( obj instanceof java.lang.Integer ))  ) && haxe.lang.Runtime.isInt(((java.lang.Number) (obj) )) )) 
 		{
-			//line 577 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
-			return java.lang.Integer.toString(((int) (haxe.lang.Runtime.toInt(obj)) ));
+			return java.lang.Integer.toString(Runtime.toInt(obj));
 		}
 		
-		//line 578 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
 		return obj.toString();
 	}
 	
 	
 	public static boolean isFinite(double v)
 	{
-		//line 583 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
 		if (( v == v )) 
 		{
-			//line 583 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
-			return  ! (java.lang.Double.isInfinite(((double) (v) ))) ;
+			return  ! (java.lang.Double.isInfinite(v)) ;
 		}
 		else
 		{
-			//line 583 "/Users/tao/.hvm/versions/haxe/3.4.2/std/java/internal/Runtime.hx"
 			return false;
 		}
 		

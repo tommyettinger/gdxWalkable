@@ -29,6 +29,7 @@ import java.util.List;
  * Wrapper for hxDaedalus
  * @author tao
  */
+@SuppressWarnings(value={"rawtypes", "unchecked"})
 public class PathHelper {
   public final Mesh mesh;
   public final EntityAI entity;
