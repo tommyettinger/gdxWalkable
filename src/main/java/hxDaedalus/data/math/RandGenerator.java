@@ -20,14 +20,11 @@ public class RandGenerator extends haxe.lang.HxObject
 		int __temp_rangeMax_19 = ( (haxe.lang.Runtime.eq(rangeMax_, null)) ? (1) : haxe.lang.Runtime.toInt(rangeMax_));
 		int __temp_rangeMin_18 = ( (haxe.lang.Runtime.eq(rangeMin_, null)) ? (0) : haxe.lang.Runtime.toInt(rangeMin_));
 		int __temp_seed17 = ( (haxe.lang.Runtime.eq(seed, null)) ? (1234) : haxe.lang.Runtime.toInt(seed));
-		__hx_this._originalSeed = __hx_this._currSeed = __temp_seed17;
+		__hx_this._currSeed = __hx_this._originalSeed = __temp_seed17;
 		__hx_this.rangeMin = __temp_rangeMin_18;
 		__hx_this.rangeMax = __temp_rangeMax_19;
 		__hx_this._numIter = 0;
 	}
-	
-	
-	
 	
 	public int rangeMin;
 	
@@ -35,19 +32,17 @@ public class RandGenerator extends haxe.lang.HxObject
 	
 	public int _originalSeed;
 	
-	public int _currSeed;
+	public long _currSeed;
 	
 	public int _rangeMin;
 	
 	public int _rangeMax;
 	
 	public int _numIter;
-	
-	public java.lang.String _tempString;
-	
+
 	public int set_seed(int value)
 	{
-		this._originalSeed = this._currSeed = value;
+		this._currSeed = this._originalSeed = value;
 		return value;
 	}
 	
@@ -67,27 +62,14 @@ public class RandGenerator extends haxe.lang.HxObject
 	
 	public int next()
 	{
-		double _floatSeed = ( this._currSeed * 1.0 );
-		this._tempString = haxe.root.Std.string(( _floatSeed * _floatSeed ));
-		while (( this._tempString.length() < 8 ))
-		{
-			this._tempString = ( "0" + this._tempString );
-		}
-		
-		this._currSeed = haxe.lang.Runtime.toInt(haxe.root.Std.parseInt(haxe.lang.StringExt.substr(this._tempString, 1, 5)));
-		int res = ((int) (java.lang.Math.round(( this.rangeMin + ( ( ((double) (this._currSeed) ) / 99999 ) * (( this.rangeMax - this.rangeMin )) ) ))) );
-		if (( this._currSeed == 0 )) 
-		{
-			this._currSeed = ( this._originalSeed + this._numIter );
-		}
-		
-		this._numIter++;
-		if (( this._numIter == 200 )) 
-		{
-			this.reset();
-		}
-		
-		return res;
+		long x = (this._currSeed += 0x9E3779B97F4A7C15L);
+		x ^= x >>> 27;
+		x *= 0x3C79AC492BA7B653L;
+		x ^= x >>> 33;
+		x *= 0x1C69B3F74AC4AE35L;
+		int bound = this.rangeMax - this.rangeMin;
+		bound = (int)(bound * ((x ^ x >>> 27) & 0xFFFFFFFFL) >> 32);
+		return this.rangeMin + bound + (bound >>> 31);
 	}
 	
 	
@@ -238,18 +220,6 @@ public class RandGenerator extends haxe.lang.HxObject
 			boolean __temp_executeDef1 = true;
 			switch (field.hashCode())
 			{
-				case 1694086820:
-				{
-					if (field.equals("_tempString")) 
-					{
-						this._tempString = haxe.lang.Runtime.toString(value);
-						return value;
-					}
-					
-					break;
-				}
-				
-				
 				case 3526257:
 				{
 					if (field.equals("seed")) 
@@ -471,7 +441,7 @@ public class RandGenerator extends haxe.lang.HxObject
 				{
 					if (field.equals("_currSeed")) 
 					{
-						return this._currSeed;
+						return (int)this._currSeed;
 					}
 					
 					break;
@@ -498,18 +468,7 @@ public class RandGenerator extends haxe.lang.HxObject
 					
 					break;
 				}
-				
-				
-				case 1694086820:
-				{
-					if (field.equals("_tempString")) 
-					{
-						return this._tempString;
-					}
-					
-					break;
-				}
-				
+
 				
 				case 343359558:
 				{
