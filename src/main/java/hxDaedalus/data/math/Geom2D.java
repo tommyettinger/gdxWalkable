@@ -53,10 +53,8 @@ public class Geom2D extends haxe.lang.HxObject
 					boolean cond1 = ( mesh._vertices == null );
 					java.lang.String message = ( "vertices: " + mesh._vertices.length );
 				}
-				
 				hxDaedalus.data.math.Geom2D.__samples.push(mesh._vertices.__get(_rnd));
 			}
-			
 		}
 		
 		hxDaedalus.data.Vertex currVertex;
